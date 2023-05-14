@@ -4,11 +4,11 @@
 import yaml, numpy as np, os
 from easydict import EasyDict as edict
 # from AB3DMOT_libs.model_multi import AB3DMOT_multi
-from track_model import AB3DMOT
+from AB3DMOT_libs.model import AB3DMOT
 from AB3DMOT_libs.kitti_oxts import load_oxts
 from AB3DMOT_libs.kitti_calib import Calibration
 from AB3DMOT_libs.nuScenes_split import get_split
-import stitch_split
+import AB3DMOT_libs.stitch_split
 from xinshuo_io import mkdir_if_missing, is_path_exists, fileparts, load_list_from_folder
 from xinshuo_miscellaneous import merge_listoflist
 
@@ -62,9 +62,9 @@ def get_subfolder_seq(dataset, split):
 		subfolder = split
 		hw = {'image': (1200, 1920), 'lidar': (720, 1920)}
 
-		if split == 'train': seq_eval = stitch_split.get_split()[0]		# 700 scenes
-		if split == 'val':   seq_eval = stitch_split.get_split()[1]		# 150 scenes
-		if split == 'val_track':  seq_eval = stitch_split.get_split()[2]      # 150 scenes
+		if split == 'train': seq_eval = AB3DMOT_libs.stitch_split.get_split()[0]		# 700 scenes
+		if split == 'val':   seq_eval = AB3DMOT_libs.stitch_split.get_split()[1]		# 150 scenes
+		if split == 'val_track':  seq_eval = AB3DMOT_libs.stitch_split.get_split()[2]      # 150 scenes
 
 		data_root = os.path.join(file_path, '../data/stitch/nuKITTI') 	# path containing the nuScenes-converted KITTI root
  

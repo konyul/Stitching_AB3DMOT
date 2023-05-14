@@ -106,3 +106,5 @@ results/
 deprecated/
 tmp/*
 data
+nuscenes-devkit
+Xinshuo_PyToolbox

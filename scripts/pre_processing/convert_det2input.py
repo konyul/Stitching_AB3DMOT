@@ -5,8 +5,8 @@
 # used to create input files for AB3DMOT
 
 import numpy as np, os, argparse
-from stitch_utils import Config, get_subfolder_seq
-from stitch2KITTI_helper import load_correspondence, load_correspondence_inverse
+from AB3DMOT_libs.utils import Config, get_subfolder_seq
+from AB3DMOT_libs.nuScenes2KITTI_helper import load_correspondence, load_correspondence_inverse
 from AB3DMOT_libs.kitti_obj import read_label
 from xinshuo_io import mkdir_if_missing, load_list_from_folder, load_txt_file, fileparts, is_path_exists
 

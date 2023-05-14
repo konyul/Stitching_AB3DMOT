@@ -4,7 +4,7 @@
 import os, numpy as np, sys, argparse
 from AB3DMOT_libs.kitti_calib import Calibration
 from AB3DMOT_libs.kitti_obj import read_label
-from stitch_utils import get_subfolder_seq, get_threshold
+from AB3DMOT_libs.utils import get_subfolder_seq, get_threshold
 from AB3DMOT_libs.io import load_highlight
 from AB3DMOT_libs.vis import vis_image_with_obj, vis_lidar_with_obj
 from xinshuo_io import is_path_exists, mkdir_if_missing, load_list_from_folder, fileparts
