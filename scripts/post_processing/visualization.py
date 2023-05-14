@@ -4,9 +4,9 @@
 import os, numpy as np, sys, argparse
 from AB3DMOT_libs.kitti_calib import Calibration
 from AB3DMOT_libs.kitti_obj import read_label
-from AB3DMOT_libs.utils import get_subfolder_seq, get_threshold
+from stitch_utils import get_subfolder_seq, get_threshold
 from AB3DMOT_libs.io import load_highlight
-from AB3DMOT_libs.vis import vis_image_with_obj
+from AB3DMOT_libs.vis import vis_image_with_obj, vis_lidar_with_obj
 from xinshuo_io import is_path_exists, mkdir_if_missing, load_list_from_folder, fileparts
 from xinshuo_miscellaneous import print_log
 from xinshuo_video import generate_video_from_folder
@@ -58,9 +58,11 @@ def vis(args):
 	seq_count = 0
 	for seq in seq_eval:
 		image_dir = os.path.join(trk_root, 'image_02/%s' % seq)
+		lidar_dir = os.path.join(trk_root, 'velodyne/%s' % seq)
 		calib_file = os.path.join(trk_root, 'calib/%s.txt' % seq)
 		result_dir = os.path.join(result_root, 'trk_withid_%d/%s' % (args.hypo_index_vis, seq))
 		save_3d_bbox_dir = os.path.join(result_dir, '../../trk_image_vis/%s' % seq); mkdir_if_missing(save_3d_bbox_dir)
+		save_3d_lidar_bbox_dir = os.path.join(result_dir, '../../trk_lidar_vis/%s' % seq); mkdir_if_missing(save_3d_lidar_bbox_dir)
 
 		# load highlight data this sequence
 		if hl_data_dict is not None and seq_count in hl_data_dict: 
@@ -70,10 +72,12 @@ def vis(args):
 
 		# load the list
 		images_list, num_images = load_list_from_folder(image_dir)
+		lidar_list, num_lidar = load_list_from_folder(lidar_dir)
 		print_log('seq %s, number of images to visualize is %d' % (seq, num_images), log=log)
 		start_count = 0
 		for count in range(start_count, num_images):
 			image_tmp = images_list[count]
+			lidar_tmp = lidar_list[count]
 			if not is_path_exists(image_tmp): 
 				count += 1
 				continue
@@ -96,6 +100,7 @@ def vis(args):
 			filtered = []
 			for object_tmp in object_res:
 				obj_type = object_tmp.type
+				# object_tmp.z = object_tmp.z - object_tmp.h/2
 				if obj_type not in det_id2str.values(): continue
 				if hasattr(object_tmp, 'score'):
 					if object_tmp.score < score_threshold[obj_type]: continue
@@ -103,16 +108,21 @@ def vis(args):
 
 			# visualization and save
 			save_path = os.path.join(save_3d_bbox_dir, '%06d.jpg' % (image_index))
+			save_path_ = os.path.join(save_3d_lidar_bbox_dir, '%06d.jpg' % (image_index))
 			vis_image_with_obj(image_tmp, filtered, [], calib_tmp, hw, save_path=save_path, id_hl=id_hl)
+			vis_lidar_with_obj(lidar_tmp, filtered, [], calib_tmp, hw, save_path=save_path_, id_hl=id_hl)
 			print_log('number of objects to plot is %d' % (len(filtered)), log=log, display=False)
 			count += 1
 
 		# generate video for the image results
 		print_log('generating video for seq %s' % (seq), log=log)
 		video_file = os.path.join(result_root, 'trk_video_vis', seq+'.mp4'); mkdir_if_missing(video_file)
+		video_file_ = os.path.join(result_root, 'trk_video_lidar_vis', seq+'.mp4'); mkdir_if_missing(video_file_)
 		if args.dataset == 'KITTI': framerate = 30
 		elif args.dataset == 'nuScenes': framerate = 2
+		elif args.dataset == 'stitch': framerate = 10
 		generate_video_from_folder(save_3d_bbox_dir, video_file, framerate=framerate)
+		generate_video_from_folder(save_3d_lidar_bbox_dir, video_file_, framerate=framerate)
 		seq_count += 1
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import numpy as np, copy
 from typing import List, Dict, Any
 from pyquaternion import Quaternion
-from nuscenes.utils.data_classes import Box
+from data_classes import Box
 from AB3DMOT_libs.kitti_obj import Object_3D
 
 # general helper function used to load nuScenes data
@@ -31,8 +31,7 @@ def split_to_samples(nusc, split_logs: List[str]) -> List[str]:
     count_filtered = 0
     for sample in nusc.sample:
         scene = nusc.get('scene', sample['scene_token'])
-        log = nusc.get('log', scene['log_token'])
-        logfile = log['logfile']
+        logfile = nusc.get("sample_data",nusc.get("sample",scene['first_sample_token'])['data']['LIDAR_TOP'])['filename'].split("/")[-1].split(".")[0][:-3]
         if logfile in split_logs:
             samples.append(sample['token'])
 

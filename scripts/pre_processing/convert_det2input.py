@@ -5,8 +5,8 @@
 # used to create input files for AB3DMOT
 
 import numpy as np, os, argparse
-from AB3DMOT_libs.utils import Config, get_subfolder_seq
-from AB3DMOT_libs.nuScenes2KITTI_helper import load_correspondence, load_correspondence_inverse
+from stitch_utils import Config, get_subfolder_seq
+from stitch2KITTI_helper import load_correspondence, load_correspondence_inverse
 from AB3DMOT_libs.kitti_obj import read_label
 from xinshuo_io import mkdir_if_missing, load_list_from_folder, load_txt_file, fileparts, is_path_exists
 
@@ -60,6 +60,8 @@ def combine_dets(dataset, split, det_name):
 
 			# loop over each detection
 			for obj in dets:
+				if obj.type == 'Motorcycle':
+					continue
 				type_tmp = det_str2id[obj.type]
 				str_to_write = obj.convert_to_trk_input_str(frame, type_tmp)
 
@@ -67,10 +69,10 @@ def combine_dets(dataset, split, det_name):
 				save_file[obj.type].write(str_to_write + '\n')
 				save_file['all'].write(str_to_write + '\n')
 
+		
 		# close files
 		for cat in save_file.keys():
 			save_file[cat].close()
-
 if __name__ == '__main__':	
 
 	args = parse_args()

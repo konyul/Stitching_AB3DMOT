@@ -2,7 +2,7 @@
 # email: xinshuo.weng@gmail.com
 
 import os, sys, argparse
-from AB3DMOT_libs.utils import get_threshold
+from stitch_utils import get_threshold
 from AB3DMOT_libs.kitti_trk import Tracklet_3D
 from AB3DMOT_libs.kitti_obj import read_label
 from xinshuo_io import load_txt_file, load_list_from_folder, mkdir_if_missing, fileparts
@@ -90,7 +90,6 @@ def conf_thresholding(data_dir, save_dir, score_threshold, num_hypo):
 					if obj.id not in to_delete_id:
 						frame_file_save.write(obj.convert_to_det_str() + '\n')
 				frame_file_save.close()
-
 if __name__ == '__main__':
 	
 	# get config

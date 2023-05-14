@@ -4,10 +4,11 @@
 import yaml, numpy as np, os
 from easydict import EasyDict as edict
 # from AB3DMOT_libs.model_multi import AB3DMOT_multi
-from AB3DMOT_libs.model import AB3DMOT
+from track_model import AB3DMOT
 from AB3DMOT_libs.kitti_oxts import load_oxts
 from AB3DMOT_libs.kitti_calib import Calibration
 from AB3DMOT_libs.nuScenes_split import get_split
+import stitch_split
 from xinshuo_io import mkdir_if_missing, is_path_exists, fileparts, load_list_from_folder
 from xinshuo_miscellaneous import merge_listoflist
 
@@ -54,6 +55,19 @@ def get_subfolder_seq(dataset, split):
 
 		data_root = os.path.join(file_path, '../data/nuScenes/nuKITTI') 	# path containing the nuScenes-converted KITTI root
 
+	elif dataset == 'stitch':			# nuScenes
+		#det_id2str = {1: 'Pedestrian', 2: 'Car', 3: 'Motorcycle', 4: 'Bus', 5: 'Truck'}
+		det_id2str = {1: 'Pedestrian', 2: 'Car', 3: 'Bus', 4: 'Truck'}
+
+		subfolder = split
+		hw = {'image': (1200, 1920), 'lidar': (720, 1920)}
+
+		if split == 'train': seq_eval = stitch_split.get_split()[0]		# 700 scenes
+		if split == 'val':   seq_eval = stitch_split.get_split()[1]		# 150 scenes
+		if split == 'val_track':  seq_eval = stitch_split.get_split()[2]      # 150 scenes
+
+		data_root = os.path.join(file_path, '../data/stitch/nuKITTI') 	# path containing the nuScenes-converted KITTI root
+ 
 	else: assert False, 'error, %s dataset is not supported' % dataset
 		
 	return subfolder, det_id2str, hw, seq_eval, data_root
@@ -73,6 +87,16 @@ def get_threshold(dataset, det_name):
 		if det_name == 'centerpoint': 
 			return {'Car': 0.269231, 'Pedestrian': 0.410000, 'Truck': 0.300000, 'Trailer': 0.372632, 
 					'Bus': 0.430000, 'Motorcycle': 0.368667, 'Bicycle': 0.394146}
+		else: assert False, 'error, detection method not supported for getting threshold' % det_name
+	elif dataset == 'stitch':
+		if det_name == 'megvii': 
+			return {'Car': 0.262545, 'Pedestrian': 0.217600, 'Truck': 0.294967, 'Trailer': 0.292775, 
+					'Bus': 0.440060, 'Motorcycle': 0.314693, 'Bicycle': 0.284720}
+		if det_name == 'centerpoint': 
+			# return {'Car': 0.269231, 'Pedestrian': 0.410000, 'Truck': 0.300000, 'Trailer': 0.372632, 
+			# 		'Bus': 0.430000, 'Motorcycle': 0.368667, 'Bicycle': 0.394146}
+			return {'Car': 0.269231, 'Pedestrian': 0.410000, 'Truck': 0.300000,
+					'Bus': 0.430000}
 		else: assert False, 'error, detection method not supported for getting threshold' % det_name
 	else: assert False, 'error, dataset %s not supported for getting threshold' % dataset
 

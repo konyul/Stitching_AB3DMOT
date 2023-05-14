@@ -4,11 +4,12 @@ from collections import OrderedDict
 from pyquaternion import Quaternion
 from nuscenes.eval.detection.utils import category_to_detection_name
 from nuscenes.eval.tracking.utils import category_to_tracking_name
-from nuscenes.utils.data_classes import Box, LidarPointCloud
+from data_classes import Box, LidarPointCloud
 from nuscenes.utils.kitti import KittiDB
 from nuscenes.utils.geometry_utils import transform_matrix, BoxVisibility
 from xinshuo_io import load_txt_file
-
+import cv2
+import shutil
 def load_correspondence(corr_file):
     data, num_line = load_txt_file(corr_file)
     data_dict = dict()
@@ -144,12 +145,13 @@ def save_lidar(nusc, filename_lid_full, lidar_dir, count):
     # save lidar, note that we are only using a single sweep, instead of the commonly used n sweeps.
 
     src_lid_path = os.path.join(nusc.dataroot, filename_lid_full)
-    dst_lid_path = os.path.join(lidar_dir, '%06d.bin' % count)
-    assert not dst_lid_path.endswith('.pcd.bin')
-    pcl = LidarPointCloud.from_file(src_lid_path)
-    pcl.rotate(kitti_to_nu_lidar.inverse.rotation_matrix)  # In KITTI lidar frame.
-    with open(dst_lid_path, "w") as lid_file:
-        pcl.points.T.tofile(lid_file)
+    dst_lid_path = os.path.join(lidar_dir, '%06d.pcd' % count)
+    shutil.copy(src_lid_path,dst_lid_path)
+    # assert not dst_lid_path.endswith('.pcd.bin')
+    # pcl = LidarPointCloud.from_file(src_lid_path)
+    # pcl.rotate(kitti_to_nu_lidar.inverse.rotation_matrix)  # In KITTI lidar frame.
+    # with open(dst_lid_path, "w") as lid_file:
+    #     pcl.points.T.tofile(lid_file)
 
 def save_image(nusc, filename_cam_full, image_dir, count):
     # save image (jpg to png).
@@ -157,5 +159,8 @@ def save_image(nusc, filename_cam_full, image_dir, count):
     src_im_path = os.path.join(nusc.dataroot, filename_cam_full)
     dst_im_path = os.path.join(image_dir, '%06d.png' % count)
     if not os.path.exists(dst_im_path):
-        im = Image.open(src_im_path)
-        im.save(dst_im_path, "PNG")
+        img = np.fromfile(src_im_path,dtype=np.uint8)
+        img = img[18:].reshape((1200,1920))
+        Image = cv2.cvtColor(img,cv2.COLOR_BayerRG2RGB)
+        cv2.imwrite(dst_im_path, Image)
+            
