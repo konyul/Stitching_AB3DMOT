@@ -48,7 +48,7 @@ import math
 from nuscenes import NuScenes
 from nuscenes.utils.geometry_utils import transform_matrix
 from data_classes import Box
-from nuscenes.utils.splits import create_splits_logs, create_splits_scenes
+from splits import create_splits_logs, create_splits_scenes
 from AB3DMOT_libs.nuScenes2KITTI_helper import load_correspondence, load_correspondence_inverse
 from AB3DMOT_libs.nuScenes2KITTI_helper import kitti_cam2nuScenes_lidar, nuScenes_transform2KITTI
 from AB3DMOT_libs.nuScenes2KITTI_helper import create_KITTI_transform, convert_anno_to_KITTI, save_image, save_lidar
