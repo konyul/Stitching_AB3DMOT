@@ -10,6 +10,7 @@ docker pull yckimm/stitching:v1.1 # (도커 공유)
 
 ## 디렉토리 세팅
 
+```bash
 data
 |— stitch # 기존 데이터 폴더
 |    |— data
@@ -18,12 +19,13 @@ data
 |    |—    |— samples (ln -s stitch_centerpoint/stitch/samples ./)
 |    |—    |— v1.0-trainval (ln -s stitch/v0.7-stitch ./v1.0-trainval)
 |    |— nuKITTI    |— object    |— produced    |— correspondence
-
+```
 
 mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
 
 ## 준비과정
 
+```bash
 cd path/to/AB3DMOT
 pip3 install -r requirements.txt
 git clone https://github.com/xinshuoweng/Xinshuo_PyToolbox
@@ -49,7 +51,7 @@ pip install filterpy
 cd AB3DMOT
 mkdir -p data/stitch/data/produced/results/detection/centerpoint_val_H1
 mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
-
+```
 
 **실행해야할 명령어**
 
