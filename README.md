@@ -25,3 +25,7 @@ python3 scripts/nuScenes/export_kitti.py kitti_trk_result2nuscenes --nusc_kitti_
 python3 scripts/post_processing/trk_conf_threshold.py --dataset stitch --result_sha centerpoint_val_H1_val_H1
 
 python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
+
+주의사항
+
+results.json과 v1.0-trainval이 같은 버전을 가리키는지 확인해야함
