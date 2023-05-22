@@ -11,7 +11,7 @@ git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
 ## Quick demo
-새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우
+새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우 아래의 순서로 진행 (10번 서버에서 진행)
 ```bash
 docker exec -it stitching /bin/bash
 mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
