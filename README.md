@@ -10,21 +10,6 @@ docker run -it --gpus all --shm-size=512g kyparkk/stitching_ab3dmot:v1.1 /bin/ba
 git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
-## detection result 경로 변경
-```bash
-mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
-
-현재 detection_results는 10번서버 /mnt/sda/konyul/project/stitching/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json 에 존재
-
-```
-
-## Quick demo
-새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우 아래의 순서로 진행 (10번 서버에서 진행)
-아래의 **실행해야할 명령어** 를 순차적으로 입력
-```bash
-docker exec -it stitching /bin/bash
-```
-
 
 ## 디렉토리 세팅
 
@@ -61,6 +46,14 @@ source ~/.bashrc
 cd path/to/stitching_AB3DMOT
 mkdir -p data/stitch/data/produced/results/detection/centerpoint_val_H1
 mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
+```
+
+## detection result 경로 변경
+```bash
+mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
+
+현재 detection_results는 10번서버 /mnt/sda/konyul/project/stitching/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json 에 존재
+
 ```
 
 **실행해야할 명령어**
