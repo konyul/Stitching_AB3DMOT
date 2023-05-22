@@ -75,22 +75,22 @@ python3 scripts/nuScenes/export_kitti.py nuscenes_gt2kitti_trk --nusc_kitti_root
 mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
 cp -r data/stitch/nuKITTI/object/val/correspondence.txt data/stitch/nuKITTI/object/produced/correspondence/val.txt
 
-nuscenes detection results to kitti format
+*nuscenes detection results to kitti format*
 python3 scripts/nuScenes/export_kitti.py nuscenes_obj_result2kitti --nusc_kitti_root ./data/stitch/nuKITTI --data_root ./data/stitch/data --result_root ./results/stitch --result_name centerpoint_val_H1 --split val
 
-detection results to tracking input
+*detection results to tracking input*
 python3 scripts/pre_processing/convert_det2input.py --dataset stitch --split val --det_name centerpoint_val_H1
 
-run AB3DMOT
+*run AB3DMOT*
 python3 main.py --dataset stitch --det_name centerpoint_val_H1 --split val
 
-tracking results to nuscenes format
+*tracking results to nuscenes format* (path_to_stitching_AB3DMOT/results/stitch/{result_name}/results_val.json)
 python3 scripts/nuScenes/export_kitti.py kitti_trk_result2nuscenes --nusc_kitti_root ./data/stitch/nuKITTI --data_root ./data/stitch/data --result_root ./results/stitch --result_name centerpoint_val_H1_val_H1 --split val
 
-post_processing
+*post_processing*
 python3 scripts/post_processing/trk_conf_threshold.py --dataset stitch --result_sha centerpoint_val_H1_val_H1
 
-visualization
+*visualization* (path_to_stitching_AB3DMOT/results/stitch/{result_sha})
 python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
 ```
 
