@@ -44,9 +44,9 @@ cd ..
 git clone https://github.com/nutonomy/nuscenes-devkit.git
 
 vim ~/.bashrc
-export PYTHONPATH=${PYTHONPATH}:'/path/to/AB3DMOT'
-export PYTHONPATH=${PYTHONPATH}:'/path/to/AB3DMOT/Xinshuo_PyToolbox'
-export PYTHONPATH=${PYTHONPATH}:'/path/to/AB3DMOT/nuscenes-devkit/python-sdk'
+export PYTHONPATH=${PYTHONPATH}:'/path/to/stitching_AB3DMOT'
+export PYTHONPATH=${PYTHONPATH}:'/path/to/stitching_AB3DMOT/Xinshuo_PyToolbox'
+export PYTHONPATH=${PYTHONPATH}:'/path/to/stitching_AB3DMOT/nuscenes-devkit/python-sdk'
 source ~/.bashrc
 
 sudo apt-get update
