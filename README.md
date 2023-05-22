@@ -58,17 +58,6 @@ export PYTHONPATH=${PYTHONPATH}:'/path/to/stitching_AB3DMOT/Xinshuo_PyToolbox'
 export PYTHONPATH=${PYTHONPATH}:'/path/to/stitching_AB3DMOT/nuscenes-devkit/python-sdk'
 source ~/.bashrc
 
-sudo apt-get update
-sudo apt-get install python3-tk
-pip install opencv-python
-apt update && apt install -y libsm6 libxext6
-apt-get install -y libxrender-dev
-pip install filterpy
-sudo add-apt-repository ppa:mc3man/trusty-media  
-sudo apt-get update  
-sudo apt-get install ffmpeg  
-sudo apt-get install frei0r-plugins  
-
 cd path/to/stitching_AB3DMOT
 mkdir -p data/stitch/data/produced/results/detection/centerpoint_val_H1
 mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
