@@ -89,6 +89,6 @@ python3 scripts/post_processing/visualization.py --dataset stitch --result_sha c
 ```
 
 
-주의사항
+**주의사항**
 
 results.json과 v1.0-trainval이 같은 버전을 가리키는지 확인해야함
