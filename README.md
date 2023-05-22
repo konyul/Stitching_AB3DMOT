@@ -20,11 +20,10 @@ mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DM
 
 ## Quick demo
 새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우 아래의 순서로 진행 (10번 서버에서 진행)
+아래의 **실행해야할 명령어** 를 순차적으로 입력
 ```bash
 docker exec -it stitching /bin/bash
 ```
-아래의 **실행해야할 명령어** 를 순차적으로 입력
----------
 
 
 ## 디렉토리 세팅
