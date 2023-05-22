@@ -28,6 +28,9 @@ data
 ## detection result 경로 변경
 ```bash
 mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
+
+현재 detection_results는 10번서버 /mnt/sda/konyul/project/stitching/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json 에 존재
+
 ```
 ## 준비과정
 
