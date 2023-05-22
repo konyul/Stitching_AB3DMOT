@@ -11,8 +11,8 @@ git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
 ## Quick demo
+10번서버에서 진행
 ```bash
-s10
 docker exec -it stitching /bin/bash
 *visualization* (output_dir : path_to_stitching_AB3DMOT/results/stitch/{result_sha})
 python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
