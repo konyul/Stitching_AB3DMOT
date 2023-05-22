@@ -11,6 +11,7 @@ git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
 ## Quick demo
+기존 Detection 결과에 대한 데모만 확인할 경우
 10번서버에서 진행
 ```bash
 docker exec -it stitching /bin/bash
@@ -18,6 +19,7 @@ docker exec -it stitching /bin/bash
 python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
 ```
 
+## 새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우
 
 ## 디렉토리 세팅
 
