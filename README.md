@@ -57,7 +57,7 @@ apt-get install -y libxrender-dev
 pip install filterpy
 
 
-cd AB3DMOT
+cd path/to/stitching_AB3DMOT
 mkdir -p data/stitch/data/produced/results/detection/centerpoint_val_H1
 mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
 ```
@@ -66,7 +66,7 @@ mkdir -p data/stitch/nuKITTI/object/produced/correspondence/
 
 ```bash
 
-
+**nuScenes GT to  kitti format**
 python3 scripts/nuScenes/export_kitti.py nuscenes_gt2kitti_obj --nusc_kitti_root ./data/stitch/nuKITTI --data_root ./data/stitch/data --result_root ./results/stitch --result_name centerpoint_val_H1 --split val
 
 python3 scripts/nuScenes/export_kitti.py nuscenes_gt2kitti_trk --nusc_kitti_root ./data/stitch/nuKITTI --data_root ./data/stitch/data --result_root ./results/stitch --result_name centerpoint_val_H1 --split val
