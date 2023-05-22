@@ -6,6 +6,8 @@
 
 ```bash
 docker pull yckimm/stitching:v1.1 # (도커 공유)
+docker run -it --gpus all --shm-size=512g yckimm/stitching:v1.1 /bin/bash
+git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
 ## 디렉토리 세팅
