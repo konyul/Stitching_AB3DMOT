@@ -17,10 +17,12 @@ data
 |— stitch # 기존 데이터 폴더
 |    |— data
 |    |—    |— maps (사용하지 않음)
-|    |—    |— produced    |— results    |— detection    |— centerpoint_val_H1 / results_val.json
+|    |—    |— produced    |— results    |— detection    |— centerpoint_val_H1 (폴더 생성)
 |    |—    |— samples (ln -s stitch_centerpoint/stitch/samples ./)
-|    |—    |— v1.0-trainval (ln -s stitch/v0.7-stitch ./v1.0-trainval)
-|    |— nuKITTI    |— object    |— produced    |— correspondence
+|    |—    |— v1.0-trainval (ln -s stitch/v0.x-stitch ./v1.0-trainval)
+|    |— nuKITTI    |— object    |— produced    |— correspondence (폴더 생성)
+
+해당 데이터셋은 10번서버의 경우 /mnt/sda/konyul/project/stitching/data/stitch에 존재
 ```
 
 ## detection result 경로 변경
