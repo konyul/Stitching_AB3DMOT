@@ -11,15 +11,12 @@ git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
 
 ## Quick demo
-기존 Detection 결과에 대한 데모만 확인할 경우
-10번서버에서 진행
+새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우
 ```bash
 docker exec -it stitching /bin/bash
-*visualization* (output_dir : path_to_stitching_AB3DMOT/results/stitch/{result_sha})
-python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
+mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
+아래의 **실행해야할 명령어**를 순차적으로 입력
 ```
-
-## 새로운 Detection 결과를 통해 Tracking 데모를 확인할 경우
 
 ## 디렉토리 세팅
 
