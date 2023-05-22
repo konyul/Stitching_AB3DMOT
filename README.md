@@ -35,7 +35,7 @@ mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DM
 ## 준비과정
 
 ```bash
-cd path/to/AB3DMOT
+cd path/to/stitching_AB3DMOT
 pip3 install -r requirements.txt
 git clone https://github.com/xinshuoweng/Xinshuo_PyToolbox
 cd Xinshuo_PyToolbox
