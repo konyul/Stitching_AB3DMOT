@@ -24,6 +24,8 @@ mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DM
 docker exec -it stitching /bin/bash
 ```
 아래의 **실행해야할 명령어** 를 순차적으로 입력
+---------
+
 
 ## 디렉토리 세팅
 
