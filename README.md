@@ -5,10 +5,19 @@
 **Requirements**
 
 ```bash
-docker pull yckimm/stitching:v1.1 # (도커 공유)
-docker run -it --gpus all --shm-size=512g yckimm/stitching:v1.1 /bin/bash
+docker pull kyparkk/stitching_ab3dmot:v1.1 # (도커 공유)
+docker run -it --gpus all --shm-size=512g kyparkk/stitching_ab3dmot:v1.1 /bin/bash
 git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```
+
+## Quick demo
+```bash
+s10
+docker exec -it stitching /bin/bash
+*visualization* (output_dir : path_to_stitching_AB3DMOT/results/stitch/{result_sha})
+python3 scripts/post_processing/visualization.py --dataset stitch --result_sha centerpoint_val_H1_val_H1_thres --split val --dataset stitch --split val
+```
+
 
 ## 디렉토리 세팅
 
