@@ -15,7 +15,7 @@ git clone https://github.com/konyul/stitching_AB3DMOT.git
 ```bash
 docker exec -it stitching /bin/bash
 mv work_dirs/{model_name}/infos_val_01sweeps_withvelo_filter_True.json → AB3DMOT/data/stitch/data/produced/results/detection/centerpoint_val_H1/results_val.json
-아래의 **실행해야할 명령어**를 순차적으로 입력
+아래의 **실행해야할 명령어** 를 순차적으로 입력
 ```
 
 ## 디렉토리 세팅
