@@ -84,7 +84,7 @@ def create_splits_logs(split: str, nusc: 'NuScenes') -> List[str]:
     if split in {'stitch'}:
         assert version.endswith('stitch'), \
             'Error: Requested split {} which is not compatible with NuScenes version {}'.format(split, version)
-    elif split in {'train', 'val', 'train_detect', 'train_track'}:
+    elif split in {'train', 'val', 'train_detect', 'train_track', 'val_track'}:
         assert version.endswith('trainval'), \
             'Requested split {} which is not compatible with NuScenes version {}'.format(split, version)
     elif split in {'mini_train', 'mini_val'}:
@@ -122,7 +122,7 @@ def create_splits_scenes(verbose: bool = False) -> Dict[str, List[str]]:
     all_scenes = train + val
     # import pdb; pdb.set_trace()
     assert len(all_scenes) == 82 and len(set(all_scenes)) == 82, 'Error: Splits incomplete!'
-    scene_splits = {'train': train, 'val': val, 'train_detect': train_detect, 'train_track': train_track, 'stitch': stitch}
+    scene_splits = {'train': train, 'val': val, 'train_detect': train_detect, 'train_track': train_track, 'stitch': stitch, 'val_track': val_track}
 
     # Optional: Print scene-level stats.
     if verbose:

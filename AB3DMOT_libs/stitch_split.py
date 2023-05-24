@@ -23,10 +23,10 @@ def get_split():
         ['scene_012', 'scene_067', 'scene_038', 'scene_035', 'scene_076',
                 'scene_008', 'scene_048', 'scene_075', 'scene_025', 'scene_028',
                 'scene_036', 'scene_039', 'scene_062', 'scene_070', 'scene_003', 'scene_040']
-    # val_track=\
-    #         ['scene_003', 'scene_008', 'scene_012']
     val_track=\
-            ['scene_003']
+            ['scene_003', 'scene_008', 'scene_012']
+    # val_track=\
+    #         ['scene_003']
     val_track2= ['scene_001', 'scene 002', 'scene_004', 'scene_005', 'scene_006',
                 'scene 007', 'scene_009', 'scene_010', 'scene_011', 'scene_013',
                 'scene_014','scene_ 015', 'scene_016', 'scene_017', 'scene_018'

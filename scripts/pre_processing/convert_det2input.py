@@ -23,7 +23,6 @@ def combine_dets(dataset, split, det_name):
 	# source dir
 	subfolder, det_id2str, _, seq_eval, data_root = get_subfolder_seq(dataset, split)
 	det_str2id = {v: k for k, v in det_id2str.items()}
-
 	# find results dir that contain detections in KITTI object format
 	det_results = os.path.join(data_root, 'object/produced/results', subfolder, det_name, 'data')
 	print('processing %s, %s, %s' % (dataset, det_name, split))

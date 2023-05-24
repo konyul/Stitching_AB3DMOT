@@ -108,3 +108,4 @@ tmp/*
 data
 nuscenes-devkit
 Xinshuo_PyToolbox
+*.json

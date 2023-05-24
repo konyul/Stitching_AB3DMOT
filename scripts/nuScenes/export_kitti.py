@@ -88,7 +88,7 @@ class KittiConverter:
         self.cam_name = cam_name
         self.lidar_name = lidar_name
         self.split = split
-        if split in ['train', 'val', 'trainval']: self.nusc_version = 'v1.0-trainval'
+        if split in ['train', 'val', 'trainval', 'val_track']: self.nusc_version = 'v1.0-trainval'
         elif split == 'test':                     self.nusc_version = 'v1.0-test'
         self.result_name = result_name
         self.data_root = data_root
